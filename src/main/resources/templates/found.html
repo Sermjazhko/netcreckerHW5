@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Информация о пользователе</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Информация о пользователе:</h1>
+<p th:text="'name: ' + ${user.name}"/>
+<p th:text="'surname: ' + ${user.surname}"/>
+<p th:text="'patronymic: ' + ${user.patronymic}"/>
+<p th:text="'age: ' + ${user.age}"/>
+<p th:text="'salary: ' + ${user.salary}"/>
+<p th:text="'email: ' + ${user.email}"/>
+<p th:text="'workplace: ' + ${user.workplace}"/>
+<p th:text= "'current time: ' + ${#calendars.format(#calendars.createNow(), 'dd MMM yyyy HH:mm')}" />
+<p th:text="'user-agent' + ${#httpServletRequest.getHeader('User-Agent')}" />
+<p><a href="/user">Введите нового пользователся</a></p>
+<p><a href="/searchUser">Получить информацию о пользователе</a></p>
+<p><a href="/uploadFile">Загрузить файл с информацией о пользователе</a></p>
+</body>
+</html>

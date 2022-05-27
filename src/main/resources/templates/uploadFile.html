@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload File</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Загрузите csv-файл</h1>
+<p>Файл должен содержать имя, фамилию, отчество, возраст, зарплату, адрес электронной почты, место работы. Используйте разделитель через запятую.</p>
+<p>Например: name,surname,patronymic,22,35444,mail,workplace</p>
+<form action="#" th:action="@{/uploadFile}" enctype="multipart/form-data" method="post">
+    <table>
+        <tr>
+            <td><input type="file" name = "file"/></td>
+        </tr>
+    </table>
+    <button type="submit">Загрузить</button>
+    <p><a href="/user">Введите нового пользователся</a></p>
+    <p><a href="/searchUser">Получить информацию о пользователе</a></p>
+</form>
+</body>
+</html>

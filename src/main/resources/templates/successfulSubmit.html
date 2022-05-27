@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Успешная запись</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Информация о пользователе записана.</h1>
+<p>Чтобы уведомить о регистрации, нажмите кнопку:</p>
+<button type="button" th:onclick="|window.location.href='/sendMsg'|">Отправить сообщение о регистрации</button>
+<p><a href="/user">Записать нового пользователя</a></p>
+<p><a href="/uploadFile">Загрузить файл с информацией о пользоваетеле</a></p>
+<p><a href="/searchUser">Найти пользователя</a></p>
+</body>
+</html>

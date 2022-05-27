@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Handling Form Submition</title>
+</head>
+<body>
+<h1>Введите информацию о пользователе:</h1>
+<form action="#" th:action="@{/user}" th:object="${user}" method="post">
+    <p>Имя: <input type="text" th:field="*{name}" required/></p>
+    <p>Фамилия: <input type="text" th:field="*{surname}" required/></p>
+    <p>Отчество: <input type="text" th:field="*{patronymic}" /></p>
+    <p>Возраст: <input type="text" th:field="*{age}" pattern="^(0|[1-9][0-9]{0,2})$"/></p>
+    <p>Уровень зарплаты: <input type="text" th:field="*{salary}" /></p>
+    <p>E-mail: <input type="email" th:field="*{email}" required/></p>
+    <p>Место работы: <input type="text" th:field="*{workplace}" /></p>
+    <p><input type="submit" value="Загрузить" /> <input type="reset" value="Сбросить" /></p>
+    <p><a href="/searchUser">Получить информацию о пользователе</a></p>
+    <p><a href="/uploadFile">Загрузить файл с информацией о пользователе</a>
+</form>
+</body>
+</html>

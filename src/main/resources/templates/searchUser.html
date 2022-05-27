@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ввод данных о пользователе</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Введите данные пользователя:</h1>
+<form action="#" th:action="@{/searchUser}" th:object="${user}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" required/></p>
+    <p>Surname: <input type="text" th:field="*{surname}" required/></p>
+    <p><input type="submit" value="Получить информацию о пользователе" /> <input type="reset" value="Сбросить" /></p>
+    <p><a href="/user">Записать нового пользователя</a></p>
+    <p><a href="/uploadFile">Загрузить файл с информацией о пользоваетеле</a></p>
+</form>
+</body>
+</html>
