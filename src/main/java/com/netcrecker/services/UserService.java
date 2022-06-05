@@ -18,7 +18,6 @@ public interface UserService extends JpaRepository<User, Integer> {
     @Query(value = "select * from users e where e.name= :name and e.surname= :surname", nativeQuery = true)
     List<User> retrieveByName(@Param("name") String name, @Param("surname") String surname);
 
-    // значит второй параметр name получаем так и поставляем в стринг
     @Query(value = "select * from users e order by e.id DESC LIMIT 1", nativeQuery = true)
     User getLastUser();
 
