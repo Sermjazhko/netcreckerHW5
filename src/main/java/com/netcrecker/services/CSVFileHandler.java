@@ -5,11 +5,12 @@ import com.opencsv.CSVReader;
 import com.opencsv.bean.*;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CSVFileHandler {
     public static final String SCV_USERS = "src/main/resources/files/users.csv";
@@ -55,5 +56,41 @@ public class CSVFileHandler {
             }
         }
         return -1;
+    }
+
+    public static List<User> parse( MultipartFile file) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new
+                InputStreamReader(file.getInputStream(), "UTF-8"));
+
+        // считываем построчно
+        String line = null;
+        Scanner scanner = null;
+        List<User> users = new ArrayList<>();
+        while ((line = reader.readLine()) != null) {
+            User user = new User();
+            scanner = new Scanner(line);
+            scanner.useDelimiter(",");
+            while (scanner.hasNext()) {
+                String data = scanner.next();
+                user.setName(data);
+                String data1 = scanner.next();
+                user.setSurname(data1);
+                String data2 = scanner.next();
+                user.setPatronymic(data2);
+                String data3 = scanner.next();
+                user.setAge(Integer.parseInt(data3));
+                String data4 = scanner.next();
+                user.setSalary(Integer.parseInt(data4));
+                String data5 = scanner.next();
+                user.setEmail(data5);
+                String data6 = scanner.next();
+                user.setWorkplace(data6);
+            }
+            users.add(user);
+        }
+        reader.close();
+
+        return  users;
     }
 }

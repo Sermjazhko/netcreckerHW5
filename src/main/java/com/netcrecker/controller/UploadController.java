@@ -1,6 +1,7 @@
 package com.netcrecker.controller;
 
 import com.netcrecker.model.User;
+import com.netcrecker.services.CSVFileHandler;
 import com.netcrecker.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,38 +41,9 @@ public class UploadController {
         if(file.isEmpty()){
             return "uploadFileIsEmpty";
         }
-        BufferedReader reader = new BufferedReader(new
-                InputStreamReader(file.getInputStream(), "UTF-8"));
 
-        // считываем построчно
-        String line = null;
-        Scanner scanner = null;
-        List<User> users = new ArrayList<>();
-        while ((line = reader.readLine()) != null) {
-            User user = new User();
-            scanner = new Scanner(line);
-            scanner.useDelimiter(",");
-            while (scanner.hasNext()) {
-                String data = scanner.next();
-                user.setName(data);
-                String data1 = scanner.next();
-                user.setSurname(data1);
-                String data2 = scanner.next();
-                user.setPatronymic(data2);
-                String data3 = scanner.next();
-                user.setAge(Integer.parseInt(data3));
-                String data4 = scanner.next();
-                user.setSalary(Integer.parseInt(data4));
-                String data5 = scanner.next();
-                user.setEmail(data5);
-                String data6 = scanner.next();
-                user.setWorkplace(data6);
-            }
-            users.add(user);
-        }
+        List<User> users = CSVFileHandler.parse(file);
         userService.save(users.get(0));
-        //закрываем наш ридер
-        reader.close();
 
         // Для файлового разделитель ещё кавычки
         /*Path path = Paths.get(CSV_UPLOAD);
@@ -81,7 +53,6 @@ public class UploadController {
             e.printStackTrace();
         }
         List<User> users = parseCSVtoUsers(CSV_UPLOAD);
-
         writeUserToCSV(users.get(0));
       //  userService.save(users.get(0));
         deleteFile(path);
